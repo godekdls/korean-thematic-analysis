@@ -1,4 +1,4 @@
-# thematic-analysis
+# Korean Thematic Analysis
 
 ## Requirements
 - Python3
