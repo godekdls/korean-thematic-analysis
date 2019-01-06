@@ -2,7 +2,6 @@ import time
 import traceback
 
 from selenium import webdriver
-from selenium.common.exceptions import TimeoutException
 from mongo import insert
 from config.categories import CATEGORIES
 from config.config import OS_CONFIG
@@ -119,7 +118,7 @@ for category in CATEGORIES:
         try:
             driver = load_document(link)
             save_document(category, link, driver)
-        except (Exception, TimeoutException):
+        except Exception as e:
             print('failed to load \'' + link + '\'')
             print(traceback.format_exc())
         driver.close()
