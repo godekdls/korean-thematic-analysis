@@ -4,6 +4,7 @@ import traceback
 from selenium import webdriver
 from mongo import insert
 from config.categories import CATEGORIES
+from config.config import OS_CONFIG
 
 
 def load_list_view(directoryno, directoryseq, page):
@@ -77,7 +78,7 @@ def save_document(category, endview_link, driver):
 def get_driver(link):
     options = webdriver.ChromeOptions()
     options.add_argument('headless')
-    driver = webdriver.Chrome('./chromedriver', chrome_options=options)
+    driver = webdriver.Chrome('./driver/chromedriver-' + OS_CONFIG['os'], chrome_options=options)
     driver.get(link)
     # print(driver.page_source)
     return driver
