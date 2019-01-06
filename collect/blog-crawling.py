@@ -78,6 +78,8 @@ def save_document(category, endview_link, driver):
 def get_driver(link):
     options = webdriver.ChromeOptions()
     options.add_argument('headless')
+    options.add_argument("--no-sandbox")
+    options.add_argument("--disable-dev-shm-usage")
     driver = webdriver.Chrome('./driver/chromedriver-' + OS_CONFIG['os'], chrome_options=options)
     driver.get(link)
     # print(driver.page_source)
@@ -85,7 +87,7 @@ def get_driver(link):
 
 
 for category in CATEGORIES:
-    print(category['name'])
+    print(category['index-name'])
     endview_links = []
     last_page = 1
     has_next = False
