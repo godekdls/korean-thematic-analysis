@@ -118,23 +118,10 @@ for category in CATEGORIES:
         try:
             driver = load_document(link)
             save_document(category, link, driver)
-        except Exception as e:
+        except Exception:
             print('failed to load \'' + link + '\'')
             print(traceback.format_exc())
-        driver.close()
-
-# session = requests.Session()
-# context = ssl._create_unverified_context()
-
-# "User-Agent", "Mozilla/5.0 (Windows NT 10.0; WOW64; rv:44.0) Gecko/20100101 Firefox/44.0")
-# url = 'https://section.blog.naver.com/ThemePost.nhn?directoryNo=5&activeDirectorySeq=1&currentPage=1'
-# headers = {
-#     'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/60.0.3112.113 Safari/537.36',
-#     'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8'}
-# req = session.get(url, headers=headers)#urllib.request.Request(url, headers=headers)
-# response = urllib.request.urlopen(request)
-# response.read()
-# html = urlopen(req, context=context)
-# bsObj = BeautifulSoup(html.read(), "html.parser")
-# bsObj = BeautifulSoup(req.text, "html.parser")
-# print(bsObj)
+        try:
+            driver.close()
+        except Exception:
+            pass
