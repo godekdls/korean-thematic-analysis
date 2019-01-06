@@ -13,7 +13,7 @@ def load_list_view(directoryno, directoryseq, page):
 
 def load_document(link):
     driver = get_driver(link)
-    time.sleep(3)
+    time.sleep(5)
     driver.switch_to.frame(driver.find_element_by_id('mainFrame'))
     return driver
 
