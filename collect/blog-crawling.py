@@ -1,4 +1,5 @@
 import time
+import traceback
 
 from selenium import webdriver
 
@@ -13,12 +14,12 @@ def load_list_view(directoryno, directoryseq, page):
 
 def load_document(link):
     driver = get_driver(link)
-    time.sleep(3)
+    time.sleep(5)
     driver.switch_to.frame(driver.find_element_by_id('mainFrame'))
     return driver
 
 
-def get_endview_links():
+def get_endview_links(driver):
     descs = driver.find_elements_by_class_name('desc_inner')
     links = []
     for desc in descs:
@@ -26,13 +27,13 @@ def get_endview_links():
     return links
 
 
-def get_last_page():
+def get_last_page(driver):
     paginations = driver.find_elements_by_css_selector('.pagination>span>a')
     last_page = paginations[len(paginations) - 1].text
     return int(last_page)
 
 
-def get_has_next():
+def get_has_next(driver):
     if driver.find_elements_by_css_selector('.pagination .icon_arrow_right'):
         return True
     else:
@@ -150,13 +151,16 @@ categories = [
 for category in categories:
     print(category['name'])
     endview_links = []
+    last_page = 1
+    has_next = False
 
     print('page 1')
     print('collecting links...')
     driver = load_list_view(category['directoryNo'], category['activeDirectorySeq'], 1)
-    endview_links = endview_links + get_endview_links()
-    last_page = get_last_page()
-    has_next = get_has_next()
+    endview_links = endview_links + get_endview_links(driver)
+    last_page = get_last_page(driver)
+    has_next = get_has_next(driver)
+
     page = 2
     while (True):
         if page > last_page and has_next == False:
@@ -166,15 +170,19 @@ for category in categories:
         print('page ' + str(page))
         print('collecting links...')
         driver = load_list_view(category['directoryNo'], category['activeDirectorySeq'], page)
-        endview_links = endview_links + get_endview_links()
+        endview_links = endview_links + get_endview_links(driver)
         page += 1
         if page >= last_page:
-            last_page = get_last_page()
-            has_next = get_has_next()
-    for endview_link in endview_links:
-        print('collecting documents...')
-        driver = load_document(endview_link)
-        save_document(endview_link, driver)
+            last_page = get_last_page(driver)
+            has_next = get_has_next(driver)
+    for idx, link in enumerate(endview_links):
+        print('collecting documents...(' + str(idx + 1) + '/' + str(len(endview_links)) + ')')
+        try:
+            driver = load_document(link)
+            save_document(link, driver)
+        except Exception as e:
+            print('failed to load \'' + link + '\'')
+            print(traceback.format_exc())
         driver.close()
 
 # session = requests.Session()
