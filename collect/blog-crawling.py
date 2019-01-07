@@ -111,8 +111,8 @@ def save_document(category, endview_link, driver):
         body = se2_document.find_element_by_id('postViewArea').text
 
     doc_id = endview_link[endview_link.rfind('/') + 1:]
-    endview_link = endview_link[0:endview_link.rfind('/')]
-    user_id = endview_link[endview_link.rfind('/') + 1:]
+    temp_link = endview_link[0:endview_link.rfind('/')]
+    user_id = temp_link[temp_link.rfind('/') + 1:]
     data = {}
     data['title'] = title
     data['body'] = body
