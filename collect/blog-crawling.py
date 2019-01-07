@@ -5,7 +5,7 @@ from selenium import webdriver
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.common.by import By
-from mongo import insert
+from mongo import insert, close
 from config.categories import CATEGORIES
 from config.config import OS_CONFIG
 
@@ -43,7 +43,7 @@ def collect_endview_links(max_page=11):
 def collect_document(category, link):
     try:
         load_document(link)
-        save_document(category, link, driver)
+        save_document(category, link)
     except Exception:
         print('failed to load \'' + link + '\'')
         print(traceback.format_exc())
@@ -93,7 +93,7 @@ def get_has_next():
         return False
 
 
-def save_document(category, endview_link, driver):
+def save_document(category, endview_link):
     title = 'unknown'
     body = driver.page_source
 
@@ -145,3 +145,4 @@ if __name__ == '__main__':
             print(traceback.format_exc())
     print('successfully completed')
     driver.quit()
+    close()
