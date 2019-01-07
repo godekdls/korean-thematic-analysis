@@ -18,7 +18,7 @@ def crawl_category(category):
         collect_document(category, link)
 
 
-def collect_endview_links(max_page=15):
+def collect_endview_links(max_page=11):
     endview_links = []
     print('page 1')
     endview_links = endview_links + load_list_view(category['directoryNo'], category['activeDirectorySeq'], 1)
