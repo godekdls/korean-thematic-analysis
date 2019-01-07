@@ -10,3 +10,6 @@ def insert(collection_name, data):
     data['date'] = datetime.datetime.now()
     collection.insert(data)
 
+
+def close():
+    client.close()
