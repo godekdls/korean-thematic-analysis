@@ -1,3 +1,4 @@
+# coding: utf-8
 CATEGORIES = [
     # 엔터테인먼트&예술
     {'name': '문학&책', 'directoryNo': 5, 'activeDirectorySeq': 1,

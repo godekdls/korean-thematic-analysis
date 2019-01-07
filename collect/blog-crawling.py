@@ -1,42 +1,93 @@
-import time
+# coding: utf-8
 import traceback
 
 from selenium import webdriver
+from selenium.webdriver.support.ui import WebDriverWait
+from selenium.webdriver.support import expected_conditions as EC
+from selenium.webdriver.common.by import By
 from mongo import insert
 from config.categories import CATEGORIES
 from config.config import OS_CONFIG
 
 
-def load_list_view(directoryno, directoryseq, page):
-    driver = get_driver(
-        'http://section.blog.naver.com/ThemePost.nhn?directoryNo=' + str(directoryno) + '&activeDirectorySeq=' + str(
-            directoryseq) + '&currentPage=' + str(page))
-    time.sleep(3)
-    return driver
+def crawl_category(category):
+    print(category['index-name'])
+    endview_links = collect_endview_links()
+    for idx, link in enumerate(endview_links):
+        print('collecting documents...(' + str(idx + 1) + '/' + str(len(endview_links)) + ')')
+        collect_document(category, link)
 
 
-def load_document(link):
-    driver = get_driver(link)
-    time.sleep(5)
-    driver.switch_to.frame(driver.find_element_by_id('mainFrame'))
-    return driver
+def collect_endview_links(max_page=15):
+    endview_links = []
+    print('page 1')
+    endview_links = endview_links + load_list_view(category['directoryNo'], category['activeDirectorySeq'], 1)
+    last_page = get_last_page()
+    has_next = get_has_next()
+
+    page = 2
+    while (True):
+        if page > max_page:
+            break
+        if page > last_page and has_next == False:
+            break
+        print('page ' + str(page))
+        print('collecting links...')
+        endview_links = endview_links + load_list_view(category['directoryNo'], category['activeDirectorySeq'], page)
+        page += 1
+        if page >= last_page:
+            last_page = get_last_page()
+            has_next = get_has_next()
+    return endview_links
 
 
-def get_endview_links(driver):
-    descs = driver.find_elements_by_class_name('desc_inner')
-    links = []
-    for desc in descs:
-        links.append(desc.get_attribute("href"))
-    return links
+def collect_document(category, link):
+    try:
+        load_document(link)
+        save_document(category, link, driver)
+    except Exception:
+        print('failed to load \'' + link + '\'')
+        print(traceback.format_exc())
 
 
-def get_last_page(driver):
+def load_list_view(directoryno, directoryseq, page, delay=3, retry_cnt=0):
+    print('collecting links...')
+    try:
+        driver.get(
+            'http://section.blog.naver.com/ThemePost.nhn?directoryNo=' + str(directoryno) + '&activeDirectorySeq=' +
+            str(directoryseq) + '&currentPage=' + str(page))
+        descs = WebDriverWait(driver, delay).until(EC.presence_of_all_elements_located((By.CLASS_NAME, 'desc_inner')))
+        links = []
+        for desc in descs:
+            links.append(desc.get_attribute("href"))
+        return links
+    except Exception as e:
+        if retry_cnt > 5:
+            raise e
+        else:
+            print('failed to load list view and try to load again')
+            return load_list_view(directoryno, directoryseq, page, delay, retry_cnt + 1)
+
+
+def load_document(link, delay=5, retry_cnt=0):
+    try:
+        driver.get(link)
+        WebDriverWait(driver, delay).until(EC.frame_to_be_available_and_switch_to_it((By.ID, 'mainFrame')))
+    except Exception as e:
+        if retry_cnt > 3:
+            raise e
+        else:
+            print('failed to load document and try to load again')
+            load_document(link, delay, retry_cnt + 1)
+
+
+def get_last_page():
     paginations = driver.find_elements_by_css_selector('.pagination>span>a')
     last_page = paginations[len(paginations) - 1].text
     return int(last_page)
 
 
-def get_has_next(driver):
+def get_has_next():
     if driver.find_elements_by_css_selector('.pagination .icon_arrow_right'):
         return True
     else:
@@ -75,53 +126,23 @@ def save_document(category, endview_link, driver):
     insert(category['index-name'], data)
 
 
-def get_driver(link):
+def get_driver(timeout=8):
     options = webdriver.ChromeOptions()
     options.add_argument('headless')
     options.add_argument("--no-sandbox")
     options.add_argument("--disable-dev-shm-usage")
     driver = webdriver.Chrome('./driver/chromedriver-' + OS_CONFIG['os'], chrome_options=options)
-    driver.get(link)
-    # print(driver.page_source)
+    driver.set_page_load_timeout(timeout)
     return driver
 
-
-for category in CATEGORIES:
-    print(category['index-name'])
-    endview_links = []
-    last_page = 1
-    has_next = False
-
-    print('page 1')
-    print('collecting links...')
-    driver = load_list_view(category['directoryNo'], category['activeDirectorySeq'], 1)
-    endview_links = endview_links + get_endview_links(driver)
-    last_page = get_last_page(driver)
-    has_next = get_has_next(driver)
-
-    page = 2
-    while (True):
-        if page > last_page and has_next == False:
-            driver.close()
-            break
-        driver.close()
-        print('page ' + str(page))
-        print('collecting links...')
-        driver = load_list_view(category['directoryNo'], category['activeDirectorySeq'], page)
-        endview_links = endview_links + get_endview_links(driver)
-        page += 1
-        if page >= last_page:
-            last_page = get_last_page(driver)
-            has_next = get_has_next(driver)
-    for idx, link in enumerate(endview_links):
-        print('collecting documents...(' + str(idx + 1) + '/' + str(len(endview_links)) + ')')
+if __name__ == '__main__':
+    driver = get_driver()
+    for idx, category in enumerate(CATEGORIES):
+        print('start crawling new category...(' + str(idx + 1) + '/' + str(len(CATEGORIES)) + ')')
         try:
-            driver = load_document(link)
-            save_document(category, link, driver)
+            crawl_category(category)
         except Exception:
-            print('failed to load \'' + link + '\'')
+            print('skipped this category: ' + category['index-name'])
             print(traceback.format_exc())
-        try:
-            driver.close()
-        except Exception:
-            pass
+    print('successfully completed')
+    driver.close()
