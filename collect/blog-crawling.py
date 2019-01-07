@@ -49,7 +49,7 @@ def collect_document(category, link):
         print(traceback.format_exc())
 
 
-def load_list_view(directoryno, directoryseq, page, delay=3, retry_cnt=0):
+def load_list_view(directoryno, directoryseq, page, delay=5, retry_cnt=0):
     print('collecting links...')
     try:
         driver.get(
@@ -68,7 +68,7 @@ def load_list_view(directoryno, directoryseq, page, delay=3, retry_cnt=0):
             return load_list_view(directoryno, directoryseq, page, delay, retry_cnt + 1)
 
 
-def load_document(link, delay=5, retry_cnt=0):
+def load_document(link, delay=10, retry_cnt=0):
     try:
         driver.get(link)
         WebDriverWait(driver, delay).until(EC.frame_to_be_available_and_switch_to_it((By.ID, 'mainFrame')))
@@ -125,7 +125,7 @@ def save_document(category, endview_link, driver):
     insert(category['index-name'], data)
 
 
-def get_driver(timeout=8):
+def get_driver(timeout=15):
     options = webdriver.ChromeOptions()
     options.add_argument('headless')
     options.add_argument("--no-sandbox")
