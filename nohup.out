@@ -1,0 +1,833 @@
+life&knowhow&shopping/childrearing&marriage
+page 1
+collecting links...
+page 2
+collecting links...
+page 3
+collecting links...
+page 4
+collecting links...
+page 5
+collecting links...
+page 6
+collecting links...
+page 7
+collecting links...
+page 8
+collecting links...
+page 9
+collecting links...
+page 10
+collecting links...
+page 11
+collecting links...
+page 12
+collecting links...
+page 13
+collecting links...
+page 14
+collecting links...
+page 15
+collecting links...
+page 16
+collecting links...
+page 17
+collecting links...
+page 18
+collecting links...
+page 19
+collecting links...
+page 20
+collecting links...
+page 21
+collecting links...
+page 22
+collecting links...
+page 23
+collecting links...
+page 24
+collecting links...
+page 25
+collecting links...
+page 26
+collecting links...
+page 27
+collecting links...
+page 28
+collecting links...
+page 29
+collecting links...
+page 30
+collecting links...
+page 31
+collecting links...
+page 32
+collecting links...
+collecting documents...(1/320)
+collecting documents...(2/320)
+collecting documents...(3/320)
+collecting documents...(4/320)
+collecting documents...(5/320)
+collecting documents...(6/320)
+collecting documents...(7/320)
+collecting documents...(8/320)
+collecting documents...(9/320)
+collecting documents...(10/320)
+collecting documents...(11/320)
+collecting documents...(12/320)
+collecting documents...(13/320)
+collecting documents...(14/320)
+collecting documents...(15/320)
+collecting documents...(16/320)
+collecting documents...(17/320)
+collecting documents...(18/320)
+collecting documents...(19/320)
+collecting documents...(20/320)
+collecting documents...(21/320)
+collecting documents...(22/320)
+collecting documents...(23/320)
+collecting documents...(24/320)
+collecting documents...(25/320)
+collecting documents...(26/320)
+collecting documents...(27/320)
+collecting documents...(28/320)
+collecting documents...(29/320)
+collecting documents...(30/320)
+collecting documents...(31/320)
+collecting documents...(32/320)
+collecting documents...(33/320)
+collecting documents...(34/320)
+collecting documents...(35/320)
+collecting documents...(36/320)
+collecting documents...(37/320)
+collecting documents...(38/320)
+failed to load 'http://blog.naver.com/bllong2/221435778006'
+Traceback (most recent call last):
+  File "./collect/blog-crawling.py", line 119, in <module>
+    driver = load_document(link)
+  File "./collect/blog-crawling.py", line 21, in load_document
+    driver.switch_to.frame(driver.find_element_by_id('mainFrame'))
+  File "/Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/site-packages/selenium/webdriver/remote/webdriver.py", line 360, in find_element_by_id
+    return self.find_element(by=By.ID, value=id_)
+  File "/Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/site-packages/selenium/webdriver/remote/webdriver.py", line 978, in find_element
+    'value': value})['value']
+  File "/Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/site-packages/selenium/webdriver/remote/webdriver.py", line 321, in execute
+    self.error_handler.check_response(response)
+  File "/Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/site-packages/selenium/webdriver/remote/errorhandler.py", line 242, in check_response
+    raise exception_class(message, screen, stacktrace)
+selenium.common.exceptions.NoSuchElementException: Message: no such element: Unable to locate element: {"method":"id","selector":"mainFrame"}
+  (Session info: headless chrome=71.0.3578.98)
+  (Driver info: chromedriver=2.45.615355 (d5698f682d8b2742017df6c81e0bd8e6a3063189),platform=Mac OS X 10.13.3 x86_64)
+
+
+collecting documents...(39/320)
+collecting documents...(40/320)
+collecting documents...(41/320)
+collecting documents...(42/320)
+collecting documents...(43/320)
+collecting documents...(44/320)
+collecting documents...(45/320)
+collecting documents...(46/320)
+collecting documents...(47/320)
+collecting documents...(48/320)
+collecting documents...(49/320)
+collecting documents...(50/320)
+failed to load 'http://blog.naver.com/julietmeeso/221435682414'
+Traceback (most recent call last):
+  File "./collect/blog-crawling.py", line 119, in <module>
+    driver = load_document(link)
+  File "./collect/blog-crawling.py", line 21, in load_document
+    driver.switch_to.frame(driver.find_element_by_id('mainFrame'))
+  File "/Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/site-packages/selenium/webdriver/remote/webdriver.py", line 360, in find_element_by_id
+    return self.find_element(by=By.ID, value=id_)
+  File "/Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/site-packages/selenium/webdriver/remote/webdriver.py", line 978, in find_element
+    'value': value})['value']
+  File "/Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/site-packages/selenium/webdriver/remote/webdriver.py", line 321, in execute
+    self.error_handler.check_response(response)
+  File "/Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/site-packages/selenium/webdriver/remote/errorhandler.py", line 241, in check_response
+    raise exception_class(message, screen, stacktrace, alert_text)
+selenium.common.exceptions.UnexpectedAlertPresentException: Alert Text: None
+Message: unexpected alert open: {Alert text : 삭제되었거나 존재하지 않는 게시물입니다.}
+  (Session info: headless chrome=71.0.3578.98)
+  (Driver info: chromedriver=2.45.615355 (d5698f682d8b2742017df6c81e0bd8e6a3063189),platform=Mac OS X 10.13.3 x86_64)
+
+
+collecting documents...(51/320)
+collecting documents...(52/320)
+collecting documents...(53/320)
+collecting documents...(54/320)
+collecting documents...(55/320)
+collecting documents...(56/320)
+collecting documents...(57/320)
+collecting documents...(58/320)
+collecting documents...(59/320)
+failed to load 'http://blog.naver.com/popopo2013/221435489600'
+Traceback (most recent call last):
+  File "./collect/blog-crawling.py", line 119, in <module>
+    driver = load_document(link)
+  File "./collect/blog-crawling.py", line 21, in load_document
+    driver.switch_to.frame(driver.find_element_by_id('mainFrame'))
+  File "/Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/site-packages/selenium/webdriver/remote/webdriver.py", line 360, in find_element_by_id
+    return self.find_element(by=By.ID, value=id_)
+  File "/Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/site-packages/selenium/webdriver/remote/webdriver.py", line 978, in find_element
+    'value': value})['value']
+  File "/Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/site-packages/selenium/webdriver/remote/webdriver.py", line 321, in execute
+    self.error_handler.check_response(response)
+  File "/Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/site-packages/selenium/webdriver/remote/errorhandler.py", line 242, in check_response
+    raise exception_class(message, screen, stacktrace)
+selenium.common.exceptions.NoSuchElementException: Message: no such element: Unable to locate element: {"method":"id","selector":"mainFrame"}
+  (Session info: headless chrome=71.0.3578.98)
+  (Driver info: chromedriver=2.45.615355 (d5698f682d8b2742017df6c81e0bd8e6a3063189),platform=Mac OS X 10.13.3 x86_64)
+
+
+collecting documents...(60/320)
+collecting documents...(61/320)
+collecting documents...(62/320)
+collecting documents...(63/320)
+collecting documents...(64/320)
+collecting documents...(65/320)
+collecting documents...(66/320)
+collecting documents...(67/320)
+collecting documents...(68/320)
+collecting documents...(69/320)
+collecting documents...(70/320)
+collecting documents...(71/320)
+collecting documents...(72/320)
+collecting documents...(73/320)
+collecting documents...(74/320)
+collecting documents...(75/320)
+collecting documents...(76/320)
+collecting documents...(77/320)
+collecting documents...(78/320)
+collecting documents...(79/320)
+collecting documents...(80/320)
+collecting documents...(81/320)
+collecting documents...(82/320)
+collecting documents...(83/320)
+collecting documents...(84/320)
+collecting documents...(85/320)
+collecting documents...(86/320)
+collecting documents...(87/320)
+collecting documents...(88/320)
+collecting documents...(89/320)
+collecting documents...(90/320)
+collecting documents...(91/320)
+collecting documents...(92/320)
+collecting documents...(93/320)
+collecting documents...(94/320)
+collecting documents...(95/320)
+collecting documents...(96/320)
+collecting documents...(97/320)
+collecting documents...(98/320)
+collecting documents...(99/320)
+collecting documents...(100/320)
+collecting documents...(101/320)
+collecting documents...(102/320)
+collecting documents...(103/320)
+collecting documents...(104/320)
+collecting documents...(105/320)
+collecting documents...(106/320)
+collecting documents...(107/320)
+collecting documents...(108/320)
+collecting documents...(109/320)
+collecting documents...(110/320)
+collecting documents...(111/320)
+collecting documents...(112/320)
+collecting documents...(113/320)
+collecting documents...(114/320)
+collecting documents...(115/320)
+collecting documents...(116/320)
+collecting documents...(117/320)
+collecting documents...(118/320)
+collecting documents...(119/320)
+collecting documents...(120/320)
+collecting documents...(121/320)
+collecting documents...(122/320)
+collecting documents...(123/320)
+collecting documents...(124/320)
+collecting documents...(125/320)
+collecting documents...(126/320)
+collecting documents...(127/320)
+collecting documents...(128/320)
+collecting documents...(129/320)
+collecting documents...(130/320)
+collecting documents...(131/320)
+collecting documents...(132/320)
+collecting documents...(133/320)
+collecting documents...(134/320)
+collecting documents...(135/320)
+collecting documents...(136/320)
+collecting documents...(137/320)
+collecting documents...(138/320)
+collecting documents...(139/320)
+collecting documents...(140/320)
+collecting documents...(141/320)
+collecting documents...(142/320)
+collecting documents...(143/320)
+collecting documents...(144/320)
+collecting documents...(145/320)
+collecting documents...(146/320)
+collecting documents...(147/320)
+collecting documents...(148/320)
+collecting documents...(149/320)
+collecting documents...(150/320)
+collecting documents...(151/320)
+collecting documents...(152/320)
+collecting documents...(153/320)
+collecting documents...(154/320)
+collecting documents...(155/320)
+collecting documents...(156/320)
+collecting documents...(157/320)
+collecting documents...(158/320)
+collecting documents...(159/320)
+collecting documents...(160/320)
+collecting documents...(161/320)
+collecting documents...(162/320)
+collecting documents...(163/320)
+collecting documents...(164/320)
+collecting documents...(165/320)
+collecting documents...(166/320)
+collecting documents...(167/320)
+collecting documents...(168/320)
+collecting documents...(169/320)
+collecting documents...(170/320)
+collecting documents...(171/320)
+collecting documents...(172/320)
+collecting documents...(173/320)
+collecting documents...(174/320)
+collecting documents...(175/320)
+collecting documents...(176/320)
+collecting documents...(177/320)
+collecting documents...(178/320)
+collecting documents...(179/320)
+collecting documents...(180/320)
+collecting documents...(181/320)
+collecting documents...(182/320)
+collecting documents...(183/320)
+collecting documents...(184/320)
+collecting documents...(185/320)
+collecting documents...(186/320)
+collecting documents...(187/320)
+collecting documents...(188/320)
+collecting documents...(189/320)
+collecting documents...(190/320)
+collecting documents...(191/320)
+collecting documents...(192/320)
+collecting documents...(193/320)
+collecting documents...(194/320)
+collecting documents...(195/320)
+collecting documents...(196/320)
+collecting documents...(197/320)
+collecting documents...(198/320)
+collecting documents...(199/320)
+collecting documents...(200/320)
+collecting documents...(201/320)
+collecting documents...(202/320)
+collecting documents...(203/320)
+collecting documents...(204/320)
+collecting documents...(205/320)
+collecting documents...(206/320)
+collecting documents...(207/320)
+collecting documents...(208/320)
+collecting documents...(209/320)
+collecting documents...(210/320)
+collecting documents...(211/320)
+collecting documents...(212/320)
+collecting documents...(213/320)
+collecting documents...(214/320)
+collecting documents...(215/320)
+collecting documents...(216/320)
+collecting documents...(217/320)
+collecting documents...(218/320)
+collecting documents...(219/320)
+collecting documents...(220/320)
+collecting documents...(221/320)
+collecting documents...(222/320)
+collecting documents...(223/320)
+collecting documents...(224/320)
+collecting documents...(225/320)
+collecting documents...(226/320)
+collecting documents...(227/320)
+collecting documents...(228/320)
+collecting documents...(229/320)
+collecting documents...(230/320)
+collecting documents...(231/320)
+collecting documents...(232/320)
+collecting documents...(233/320)
+collecting documents...(234/320)
+collecting documents...(235/320)
+collecting documents...(236/320)
+collecting documents...(237/320)
+collecting documents...(238/320)
+collecting documents...(239/320)
+collecting documents...(240/320)
+collecting documents...(241/320)
+collecting documents...(242/320)
+collecting documents...(243/320)
+collecting documents...(244/320)
+collecting documents...(245/320)
+collecting documents...(246/320)
+collecting documents...(247/320)
+collecting documents...(248/320)
+collecting documents...(249/320)
+collecting documents...(250/320)
+collecting documents...(251/320)
+collecting documents...(252/320)
+collecting documents...(253/320)
+collecting documents...(254/320)
+collecting documents...(255/320)
+collecting documents...(256/320)
+collecting documents...(257/320)
+collecting documents...(258/320)
+collecting documents...(259/320)
+collecting documents...(260/320)
+collecting documents...(261/320)
+collecting documents...(262/320)
+collecting documents...(263/320)
+collecting documents...(264/320)
+collecting documents...(265/320)
+collecting documents...(266/320)
+collecting documents...(267/320)
+collecting documents...(268/320)
+collecting documents...(269/320)
+collecting documents...(270/320)
+collecting documents...(271/320)
+collecting documents...(272/320)
+collecting documents...(273/320)
+collecting documents...(274/320)
+collecting documents...(275/320)
+collecting documents...(276/320)
+collecting documents...(277/320)
+collecting documents...(278/320)
+collecting documents...(279/320)
+collecting documents...(280/320)
+collecting documents...(281/320)
+collecting documents...(282/320)
+collecting documents...(283/320)
+collecting documents...(284/320)
+collecting documents...(285/320)
+collecting documents...(286/320)
+collecting documents...(287/320)
+collecting documents...(288/320)
+collecting documents...(289/320)
+collecting documents...(290/320)
+collecting documents...(291/320)
+collecting documents...(292/320)
+collecting documents...(293/320)
+collecting documents...(294/320)
+collecting documents...(295/320)
+collecting documents...(296/320)
+collecting documents...(297/320)
+collecting documents...(298/320)
+collecting documents...(299/320)
+collecting documents...(300/320)
+collecting documents...(301/320)
+collecting documents...(302/320)
+collecting documents...(303/320)
+collecting documents...(304/320)
+collecting documents...(305/320)
+collecting documents...(306/320)
+collecting documents...(307/320)
+collecting documents...(308/320)
+collecting documents...(309/320)
+collecting documents...(310/320)
+collecting documents...(311/320)
+collecting documents...(312/320)
+collecting documents...(313/320)
+collecting documents...(314/320)
+collecting documents...(315/320)
+collecting documents...(316/320)
+collecting documents...(317/320)
+collecting documents...(318/320)
+collecting documents...(319/320)
+collecting documents...(320/320)
+life&knowhow&shopping/pets
+page 1
+collecting links...
+page 2
+collecting links...
+page 3
+collecting links...
+page 4
+collecting links...
+page 5
+collecting links...
+page 6
+collecting links...
+collecting documents...(1/56)
+collecting documents...(2/56)
+collecting documents...(3/56)
+collecting documents...(4/56)
+collecting documents...(5/56)
+collecting documents...(6/56)
+collecting documents...(7/56)
+collecting documents...(8/56)
+collecting documents...(9/56)
+collecting documents...(10/56)
+collecting documents...(11/56)
+collecting documents...(12/56)
+collecting documents...(13/56)
+collecting documents...(14/56)
+collecting documents...(15/56)
+collecting documents...(16/56)
+collecting documents...(17/56)
+collecting documents...(18/56)
+collecting documents...(19/56)
+collecting documents...(20/56)
+collecting documents...(21/56)
+collecting documents...(22/56)
+collecting documents...(23/56)
+collecting documents...(24/56)
+collecting documents...(25/56)
+collecting documents...(26/56)
+collecting documents...(27/56)
+collecting documents...(28/56)
+collecting documents...(29/56)
+collecting documents...(30/56)
+collecting documents...(31/56)
+collecting documents...(32/56)
+collecting documents...(33/56)
+collecting documents...(34/56)
+collecting documents...(35/56)
+collecting documents...(36/56)
+collecting documents...(37/56)
+collecting documents...(38/56)
+collecting documents...(39/56)
+collecting documents...(40/56)
+collecting documents...(41/56)
+collecting documents...(42/56)
+collecting documents...(43/56)
+collecting documents...(44/56)
+collecting documents...(45/56)
+collecting documents...(46/56)
+collecting documents...(47/56)
+collecting documents...(48/56)
+collecting documents...(49/56)
+collecting documents...(50/56)
+collecting documents...(51/56)
+collecting documents...(52/56)
+collecting documents...(53/56)
+collecting documents...(54/56)
+collecting documents...(55/56)
+collecting documents...(56/56)
+life&knowhow&shopping/fashion&beauty
+page 1
+collecting links...
+page 2
+collecting links...
+page 3
+collecting links...
+page 4
+collecting links...
+page 5
+collecting links...
+page 6
+collecting links...
+page 7
+collecting links...
+page 8
+collecting links...
+page 9
+collecting links...
+page 10
+collecting links...
+page 11
+collecting links...
+page 12
+collecting links...
+page 13
+collecting links...
+page 14
+collecting links...
+page 15
+collecting links...
+page 16
+collecting links...
+page 17
+collecting links...
+page 18
+collecting links...
+page 19
+collecting links...
+page 20
+collecting links...
+page 21
+collecting links...
+page 22
+collecting links...
+page 23
+collecting links...
+page 24
+collecting links...
+page 25
+collecting links...
+page 26
+collecting links...
+page 27
+collecting links...
+page 28
+collecting links...
+page 29
+collecting links...
+page 30
+collecting links...
+page 31
+collecting links...
+page 32
+collecting links...
+page 33
+collecting links...
+page 34
+collecting links...
+page 35
+collecting links...
+page 36
+collecting links...
+page 37
+collecting links...
+page 38
+collecting links...
+page 39
+collecting links...
+page 40
+collecting links...
+page 41
+collecting links...
+page 42
+collecting links...
+page 43
+collecting links...
+page 44
+collecting links...
+page 45
+collecting links...
+page 46
+collecting links...
+collecting documents...(1/440)
+collecting documents...(2/440)
+collecting documents...(3/440)
+collecting documents...(4/440)
+collecting documents...(5/440)
+collecting documents...(6/440)
+collecting documents...(7/440)
+collecting documents...(8/440)
+collecting documents...(9/440)
+collecting documents...(10/440)
+collecting documents...(11/440)
+collecting documents...(12/440)
+collecting documents...(13/440)
+collecting documents...(14/440)
+collecting documents...(15/440)
+collecting documents...(16/440)
+collecting documents...(17/440)
+collecting documents...(18/440)
+collecting documents...(19/440)
+collecting documents...(20/440)
+collecting documents...(21/440)
+collecting documents...(22/440)
+collecting documents...(23/440)
+collecting documents...(24/440)
+collecting documents...(25/440)
+collecting documents...(26/440)
+collecting documents...(27/440)
+collecting documents...(28/440)
+collecting documents...(29/440)
+collecting documents...(30/440)
+collecting documents...(31/440)
+collecting documents...(32/440)
+collecting documents...(33/440)
+collecting documents...(34/440)
+collecting documents...(35/440)
+collecting documents...(36/440)
+collecting documents...(37/440)
+collecting documents...(38/440)
+collecting documents...(39/440)
+collecting documents...(40/440)
+failed to load 'http://blog.naver.com/alskalsk1122/221435754627'
+Traceback (most recent call last):
+  File "./collect/blog-crawling.py", line 119, in <module>
+    driver = load_document(link)
+  File "./collect/blog-crawling.py", line 21, in load_document
+    driver.switch_to.frame(driver.find_element_by_id('mainFrame'))
+  File "/Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/site-packages/selenium/webdriver/remote/webdriver.py", line 360, in find_element_by_id
+    return self.find_element(by=By.ID, value=id_)
+  File "/Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/site-packages/selenium/webdriver/remote/webdriver.py", line 978, in find_element
+    'value': value})['value']
+  File "/Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/site-packages/selenium/webdriver/remote/webdriver.py", line 321, in execute
+    self.error_handler.check_response(response)
+  File "/Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/site-packages/selenium/webdriver/remote/errorhandler.py", line 242, in check_response
+    raise exception_class(message, screen, stacktrace)
+selenium.common.exceptions.NoSuchElementException: Message: no such element: Unable to locate element: {"method":"id","selector":"mainFrame"}
+  (Session info: headless chrome=71.0.3578.98)
+  (Driver info: chromedriver=2.45.615355 (d5698f682d8b2742017df6c81e0bd8e6a3063189),platform=Mac OS X 10.13.3 x86_64)
+
+
+collecting documents...(41/440)
+collecting documents...(42/440)
+collecting documents...(43/440)
+collecting documents...(44/440)
+collecting documents...(45/440)
+collecting documents...(46/440)
+collecting documents...(47/440)
+collecting documents...(48/440)
+collecting documents...(49/440)
+failed to load 'http://blog.naver.com/daisukitokyo/221435676875'
+Traceback (most recent call last):
+  File "/Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/site-packages/pymongo/pool.py", line 579, in command
+    unacknowledged=unacknowledged)
+  File "/Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/site-packages/pymongo/network.py", line 141, in command
+    reply = receive_message(sock, request_id)
+  File "/Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/site-packages/pymongo/network.py", line 173, in receive_message
+    _receive_data_on_socket(sock, 16))
+  File "/Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/site-packages/pymongo/network.py", line 232, in _receive_data_on_socket
+    chunk_length = sock.recv_into(mv[bytes_read:])
+ConnectionResetError: [Errno 54] Connection reset by peer
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "./collect/blog-crawling.py", line 120, in <module>
+    save_document(category, link, driver)
+  File "./collect/blog-crawling.py", line 75, in save_document
+    insert(category['index-name'], data)
+  File "/Users/user/Workspace/movie-performance-analyzer/collect/mongo.py", line 11, in insert
+    collection.insert(data)
+  File "/Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/site-packages/pymongo/collection.py", line 3161, in insert
+    check_keys, manipulate, write_concern)
+  File "/Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/site-packages/pymongo/collection.py", line 607, in _insert
+    bypass_doc_val, session)
+  File "/Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/site-packages/pymongo/collection.py", line 595, in _insert_one
+    acknowledged, _insert_command, session)
+  File "/Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/site-packages/pymongo/mongo_client.py", line 1248, in _retryable_write
+    return self._retry_with_session(retryable, func, s, None)
+  File "/Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/site-packages/pymongo/mongo_client.py", line 1201, in _retry_with_session
+    return func(session, sock_info, retryable)
+  File "/Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/site-packages/pymongo/collection.py", line 590, in _insert_command
+    retryable_write=retryable_write)
+  File "/Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/site-packages/pymongo/pool.py", line 584, in command
+    self._raise_connection_failure(error)
+  File "/Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/site-packages/pymongo/pool.py", line 743, in _raise_connection_failure
+    _raise_connection_failure(self.address, error)
+  File "/Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/site-packages/pymongo/pool.py", line 283, in _raise_connection_failure
+    raise AutoReconnect(msg)
+pymongo.errors.AutoReconnect: 101.101.164.239:27017: [Errno 54] Connection reset by peer
+
+collecting documents...(50/440)
+collecting documents...(51/440)
+collecting documents...(52/440)
+collecting documents...(53/440)
+collecting documents...(54/440)
+collecting documents...(55/440)
+collecting documents...(56/440)
+collecting documents...(57/440)
+collecting documents...(58/440)
+collecting documents...(59/440)
+collecting documents...(60/440)
+collecting documents...(61/440)
+collecting documents...(62/440)
+collecting documents...(63/440)
+collecting documents...(64/440)
+collecting documents...(65/440)
+collecting documents...(66/440)
+collecting documents...(67/440)
+collecting documents...(68/440)
+collecting documents...(69/440)
+collecting documents...(70/440)
+collecting documents...(71/440)
+collecting documents...(72/440)
+collecting documents...(73/440)
+collecting documents...(74/440)
+collecting documents...(75/440)
+collecting documents...(76/440)
+collecting documents...(77/440)
+collecting documents...(78/440)
+collecting documents...(79/440)
+collecting documents...(80/440)
+collecting documents...(81/440)
+collecting documents...(82/440)
+collecting documents...(83/440)
+collecting documents...(84/440)
+collecting documents...(85/440)
+collecting documents...(86/440)
+collecting documents...(87/440)
+collecting documents...(88/440)
+collecting documents...(89/440)
+collecting documents...(90/440)
+collecting documents...(91/440)
+collecting documents...(92/440)
+collecting documents...(93/440)
+collecting documents...(94/440)
+collecting documents...(95/440)
+collecting documents...(96/440)
+collecting documents...(97/440)
+collecting documents...(98/440)
+collecting documents...(99/440)
+collecting documents...(100/440)
+collecting documents...(101/440)
+collecting documents...(102/440)
+collecting documents...(103/440)
+collecting documents...(104/440)
+collecting documents...(105/440)
+collecting documents...(106/440)
+collecting documents...(107/440)
+collecting documents...(108/440)
+collecting documents...(109/440)
+collecting documents...(110/440)
+collecting documents...(111/440)
+collecting documents...(112/440)
+collecting documents...(113/440)
+collecting documents...(114/440)
+collecting documents...(115/440)
+collecting documents...(116/440)
+collecting documents...(117/440)
+collecting documents...(118/440)
+collecting documents...(119/440)
+collecting documents...(120/440)
+collecting documents...(121/440)
+collecting documents...(122/440)
+collecting documents...(123/440)
+collecting documents...(124/440)
+collecting documents...(125/440)
+collecting documents...(126/440)
+collecting documents...(127/440)
+collecting documents...(128/440)
+collecting documents...(129/440)
+collecting documents...(130/440)
+collecting documents...(131/440)
+collecting documents...(132/440)
+collecting documents...(133/440)
+collecting documents...(134/440)
+collecting documents...(135/440)
+collecting documents...(136/440)
+collecting documents...(137/440)
+collecting documents...(138/440)
+collecting documents...(139/440)
+collecting documents...(140/440)
+collecting documents...(141/440)
+failed to load 'http://blog.naver.com/ryan_house/221435859560'
+Traceback (most recent call last):
+  File "./collect/blog-crawling.py", line 119, in <module>
+    driver = load_document(link)
+  File "./collect/blog-crawling.py", line 21, in load_document
+    driver.switch_to.frame(driver.find_element_by_id('mainFrame'))
+  File "/Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/site-packages/selenium/webdriver/remote/webdriver.py", line 360, in find_element_by_id
+    return self.find_element(by=By.ID, value=id_)
+  File "/Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/site-packages/selenium/webdriver/remote/webdriver.py", line 978, in find_element
+    'value': value})['value']
+  File "/Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/site-packages/selenium/webdriver/remote/webdriver.py", line 321, in execute
+    self.error_handler.check_response(response)
+  File "/Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/site-packages/selenium/webdriver/remote/errorhandler.py", line 241, in check_response
+    raise exception_class(message, screen, stacktrace, alert_text)
+selenium.common.exceptions.UnexpectedAlertPresentException: Alert Text: None
+Message: unexpected alert open: {Alert text : 삭제되었거나 존재하지 않는 게시물입니다.}
+  (Session info: headless chrome=71.0.3578.98)
+  (Driver info: chromedriver=2.45.615355 (d5698f682d8b2742017df6c81e0bd8e6a3063189),platform=Mac OS X 10.13.3 x86_64)
+
+
+collecting documents...(142/440)
+collecting documents...(143/440)
+collecting documents...(144/440)
+collecting documents...(145/440)
+collecting documents...(146/440)
+collecting documents...(147/440)
+collecting documents...(148/440)

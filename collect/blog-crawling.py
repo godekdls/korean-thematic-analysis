@@ -1,3 +1,4 @@
+# coding: utf-8
 import time
 import traceback
 
@@ -5,6 +6,55 @@ from selenium import webdriver
 from mongo import insert
 from config.categories import CATEGORIES
 from config.config import OS_CONFIG
+
+
+def crawl_category(category):
+    print(category['index-name'])
+    endview_links = collect_endview_links()
+    for idx, link in enumerate(endview_links):
+        print('collecting documents...(' + str(idx + 1) + '/' + str(len(endview_links)) + ')')
+        collect_document(category, link)
+
+
+def collect_endview_links(max_page=15):
+    endview_links = []
+    print('page 1')
+    print('collecting links...')
+    driver = load_list_view(category['directoryNo'], category['activeDirectorySeq'], 1)
+    endview_links = endview_links + get_endview_links(driver)
+    last_page = get_last_page(driver)
+    has_next = get_has_next(driver)
+
+    page = 2
+    while (True):
+        if page > max_page:
+            break
+        if page > last_page and has_next == False:
+            break
+        driver.close()
+        print('page ' + str(page))
+        print('collecting links...')
+        driver = load_list_view(category['directoryNo'], category['activeDirectorySeq'], page)
+        endview_links = endview_links + get_endview_links(driver)
+        page += 1
+        if page >= last_page:
+            last_page = get_last_page(driver)
+            has_next = get_has_next(driver)
+    driver.close()
+    return endview_links
+
+
+def collect_document(category, link):
+    try:
+        driver = load_document(link)
+        save_document(category, link, driver)
+    except Exception:
+        print('failed to load \'' + link + '\'')
+        print(traceback.format_exc())
+    try:
+        driver.close()
+    except Exception:
+        pass
 
 
 def load_list_view(directoryno, directoryseq, page):
@@ -86,42 +136,8 @@ def get_driver(link):
     return driver
 
 
-for category in CATEGORIES:
-    print(category['index-name'])
-    endview_links = []
-    last_page = 1
-    has_next = False
-
-    print('page 1')
-    print('collecting links...')
-    driver = load_list_view(category['directoryNo'], category['activeDirectorySeq'], 1)
-    endview_links = endview_links + get_endview_links(driver)
-    last_page = get_last_page(driver)
-    has_next = get_has_next(driver)
-
-    page = 2
-    while (True):
-        if page > last_page and has_next == False:
-            driver.close()
-            break
-        driver.close()
-        print('page ' + str(page))
-        print('collecting links...')
-        driver = load_list_view(category['directoryNo'], category['activeDirectorySeq'], page)
-        endview_links = endview_links + get_endview_links(driver)
-        page += 1
-        if page >= last_page:
-            last_page = get_last_page(driver)
-            has_next = get_has_next(driver)
-    for idx, link in enumerate(endview_links):
-        print('collecting documents...(' + str(idx + 1) + '/' + str(len(endview_links)) + ')')
-        try:
-            driver = load_document(link)
-            save_document(category, link, driver)
-        except Exception:
-            print('failed to load \'' + link + '\'')
-            print(traceback.format_exc())
-        try:
-            driver.close()
-        except Exception:
-            pass
+if __name__ == '__main__':
+    for idx, category in enumerate(CATEGORIES):
+        print('start crawling new category...(' + str(idx + 1) + '/' + str(len(CATEGORIES)) + ')')
+        crawl_category(category)
+    print('successfully completed')
