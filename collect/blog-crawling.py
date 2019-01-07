@@ -144,4 +144,4 @@ if __name__ == '__main__':
             print('skipped this category: ' + category['index-name'])
             print(traceback.format_exc())
     print('successfully completed')
-    driver.close()
+    driver.quit()
