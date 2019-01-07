@@ -32,7 +32,6 @@ def collect_endview_links(max_page=15):
         if page > last_page and has_next == False:
             break
         print('page ' + str(page))
-        print('collecting links...')
         endview_links = endview_links + load_list_view(category['directoryNo'], category['activeDirectorySeq'], page)
         page += 1
         if page >= last_page:
