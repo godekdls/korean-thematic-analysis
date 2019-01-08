@@ -32,7 +32,11 @@ def collect_endview_links(max_page=11):
         if page > last_page and has_next == False:
             break
         print('page ' + str(page))
-        endview_links = endview_links + load_list_view(category['directoryNo'], category['activeDirectorySeq'], page)
+        try:
+            endview_links = endview_links + load_list_view(category['directoryNo'], category['activeDirectorySeq'], page)
+        except:
+            print('page ' + str(page) + ' is skipped')
+            pass
         page += 1
         if page >= last_page:
             last_page = get_last_page()
