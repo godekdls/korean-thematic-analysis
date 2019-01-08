@@ -129,7 +129,7 @@ def save_document(category, endview_link):
     insert(category['index-name'], data)
 
 
-def get_driver(timeout=15):
+def get_driver(timeout=30):
     options = webdriver.ChromeOptions()
     options.add_argument('headless')
     options.add_argument("--no-sandbox")
