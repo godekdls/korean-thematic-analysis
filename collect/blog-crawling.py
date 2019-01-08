@@ -129,11 +129,13 @@ def save_document(category, endview_link):
     insert(category['index-name'], data)
 
 
-def get_driver(timeout=25):
+def get_driver(timeout=15):
     options = webdriver.ChromeOptions()
     options.add_argument('headless')
     options.add_argument("--no-sandbox")
     options.add_argument("--disable-dev-shm-usage")
+    prefs = {"profile.managed_default_content_settings.images": 2}
+    options.add_experimental_option("prefs", prefs)
     driver = webdriver.Chrome('./driver/chromedriver-' + OS_CONFIG['os'], chrome_options=options)
     driver.set_page_load_timeout(timeout)
     return driver
