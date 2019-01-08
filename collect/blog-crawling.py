@@ -39,8 +39,11 @@ def collect_endview_links(max_page=11):
             pass
         page += 1
         if page >= last_page:
-            last_page = get_last_page()
-            has_next = get_has_next()
+            try:
+                last_page = get_last_page()
+                has_next = get_has_next()
+            except:
+                break
     return endview_links
 
 
