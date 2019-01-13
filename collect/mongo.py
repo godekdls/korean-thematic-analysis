@@ -20,3 +20,9 @@ def insert(collection_name, data):
 
 def close():
     client.close()
+
+# return list of dict
+def find(collection_name, limit=1000):
+    collection = db[collection_name]
+    return collection.find().limit(limit)
+
