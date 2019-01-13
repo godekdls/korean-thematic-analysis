@@ -9,6 +9,7 @@ Korean Thematic Analysis is a project to help understand all of the sequencial s
 - [The Numpy Library](https://github.com/numpy/numpy) (pip3 install numpy)
 - [The Matplotlib Library](https://github.com/matplotlib/matplotlib) (pip3 install matplotlib)
 - [The Sklearn Library](https://github.com/scikit-learn/scikit-learn) (pip3 install sklearn)
+- [The Tensorflow Library](https://www.tensorflow.org/) (pip3 install tensorflow)
 - [Chrome](https://www.google.com/chrome/) v70-72 (using [ChromeDriver 2.45](http://chromedriver.chromium.org/downloads))
 
 ## Steps
