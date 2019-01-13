@@ -1,14 +1,21 @@
 from pymongo import MongoClient
 from config.config import MONGODB_CONFIG
 import datetime
+import traceback
 
 client = MongoClient(MONGODB_CONFIG['host'], MONGODB_CONFIG['port'])
 db = client[MONGODB_CONFIG['dbname']]
 
+
 def insert(collection_name, data):
     collection = db[collection_name]
     data['date'] = datetime.datetime.now()
-    collection.insert(data)
+    try:
+        collection.insert(data)
+    except Exception:
+        # duplicated docId
+        print('failed to insert document into mongo')
+        print(traceback.format_exc())
 
 
 def close():
