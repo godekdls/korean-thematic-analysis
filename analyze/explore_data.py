@@ -13,19 +13,16 @@ from collect import mongo
 from config import categories
 
 # Number of samples per class
-NUM_OF_SAMPLES_PER_CLASS = 10 # TODO
+NUM_OF_SAMPLES_PER_CLASS = 100  # TODO
 
 
 def load_dataset(seed=123):
-    """Loads the IMDb movie reviews sentiment analysis dataset.
-
+    """
     # Arguments
         seed: int, seed for randomizer.
-
     # Returns
         A tuple of training and validation data.
         Number of categories: 31 (0~30)
-
     """
 
     # Load the whole data
@@ -65,8 +62,8 @@ def load_dataset(seed=123):
                 test_texts.append(documents[i]['text'])
                 test_labels.append(documents[i]['label'])
 
-    return ((train_texts, np.array(train_labels)),
-            (test_texts, np.array(test_labels)))
+    return ((train_texts, train_labels),
+            (test_texts, test_labels))
 
 
 def get_num_classes(train_labels):
@@ -77,7 +74,18 @@ def get_num_classes(train_labels):
     return num_classes + 1
 
 
-def get_num_words_per_sample(sample_texts):
+def get_num_samples_per_class(num_classes, labels):
+    temp = np.empty(num_classes)
+    temp.fill(0)
+    result = ''
+    for label in labels:
+        temp[label] += 1
+    for label in range(len(temp)):
+        result += ' / category[' + str(label) + '] : ' + str(temp[label])
+    return result
+
+
+def get_median_num_words_per_sample(sample_texts):
     """Returns the median number of words per sample given corpus.
 
     # Arguments
@@ -104,12 +112,12 @@ def plot_sample_length_distribution(sample_texts):
 
 
 if __name__ == '__main__':
-    dataset = load_dataset()
-    train_texts = dataset[0][0]
-    train_labels = dataset[0][1]
-    print(train_labels)
-    test_texts = dataset[1][0]
-    test_labels = dataset[1][1]
-    print(get_num_words_per_sample(train_texts))
-    print(get_num_classes(train_labels))
+    ((train_texts, train_labels), (test_texts, test_labels)) = load_dataset()
+    print('number of samples : train data - ', len(train_texts), ' test data - ', len(test_texts))
+    num_classes = get_num_classes(train_labels)
+    print('number of classes : ', num_classes)
+    print('number of samples per class : ')
+    print(' train data :', get_num_samples_per_class(num_classes, train_labels))
+    print(' test data :', get_num_samples_per_class(num_classes, test_labels))
+    print('median number of words per sample : train data - ', get_median_num_words_per_sample(train_texts), ' test data - ', get_median_num_words_per_sample(test_texts))
     plot_sample_length_distribution(train_texts)
