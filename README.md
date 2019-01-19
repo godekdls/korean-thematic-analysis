@@ -16,6 +16,12 @@ Korean Thematic Analysis is a project to help understand all of the sequencial s
 
 ### 1. Collecting Data
 We are gonna run into [Naver blog website](https://section.blog.naver.com/ThemePost.nhn?directoryNo=0&activeDirectorySeq=0&currentPage=1), classified by some categories. You don't need any authorization like login or something.
+Let's access that page using chromedriver! Since the driver depends on OS, you need to give the information to initialize driver. In this repository, we have drivers only for mac or linux. If you have to run scraping on another system, copy your driver in the directory `./driver`. Add configuration like below:
+```
+OS_CONFIG = {
+    'os' : 'your os' # mac or linux
+}
+```
 We used [mongodb](https://www.mongodb.com/) to collect documents. You need to add configuration to connect your mongodb in `collect/cinfig/config.py` like below:
 ```
 MONGODB_CONFIG = {
