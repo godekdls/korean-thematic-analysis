@@ -82,10 +82,10 @@ def train_ngram_model(data,
 
     history = history.history
     print_history(history)
-    plot_history(history)
 
-    loss_and_metrics = model.evaluate(x_test, test_labels, batch_size=batch_size)
-    print('loss and metrics : ', loss_and_metrics)
+    accuracy = model.evaluate(x_test, test_labels, batch_size=batch_size)
+    print("\n%s : %.2f%%" % (model.metrics_names[1], accuracy[1] * 100))
+    plot_history(history)
 
     # Save model.
     # model.save('mlp_model.h5')
