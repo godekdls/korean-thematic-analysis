@@ -34,9 +34,9 @@ Before jumping into training and predicting something amazing, it is essential t
 ```
 python3 ./analyze/explore_data.py
 ```
-*Length Distribution*
+#### Length Distribution
 ![figure_1](https://user-images.githubusercontent.com/12438898/51427235-d6dc0300-1c38-11e9-9cb0-f36018d780a8.png)
-*Unigrams Distribution*
+#### Unigrams Distribution
 ![figure_2](https://user-images.githubusercontent.com/12438898/51427236-d7749980-1c38-11e9-9fb5-70a8f0a125e7.png)
 
 ### 3. Building a Model and Training
@@ -45,4 +45,5 @@ First we tokenized and vectorized using unigram and bigram, and built multi-laye
 ```
 python3 ./analyze/analyze_categories.py
 ```
+#### learning curve
 ![figure_3](https://user-images.githubusercontent.com/12438898/51427334-35ee4780-1c3a-11e9-8d56-11271b58d513.png)
