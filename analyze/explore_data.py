@@ -2,7 +2,6 @@
 import random
 import numpy as np
 import matplotlib.pyplot as plt
-import matplotlib.font_manager as fm
 from sklearn.feature_extraction.text import CountVectorizer
 
 import sys
@@ -64,8 +63,10 @@ def load_dataset(seed=123):
                 test_texts.append(documents[i]['text'])
                 test_labels.append(documents[i]['label'])
 
-    return ((train_texts, train_labels),
-            (test_texts, test_labels))
+    # return ((train_texts, train_labels),
+    #         (test_texts, test_labels))
+    return ((train_texts, np.array(train_labels)),
+            (test_texts, np.array(test_labels)))
 
 
 def get_num_classes(train_labels):
@@ -115,7 +116,7 @@ def plot_sample_length_distribution(sample_texts):
 
 def plot_unigram_distribution(sample_texts, top_count=30):
     plt.rc('font', family='NanumGothicOTF')
-    plt.rcParams["figure.figsize"] = (14,4)
+    plt.rcParams["figure.figsize"] = (14, 4)
 
     c_vec = CountVectorizer(ngram_range=(1, 1))
     ngrams = c_vec.fit_transform(sample_texts)
