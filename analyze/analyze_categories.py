@@ -2,6 +2,7 @@ import explore_data
 import build_model
 import ngram
 import tensorflow as tf
+import matplotlib.pyplot as plt
 
 LEARNING_RATE = 1e-3
 EPOCHS = 1000
@@ -72,14 +73,33 @@ def train_ngram_model(data,
         verbose=2,  # Logs once per epoch.
         batch_size=batch_size)
 
-    # Print results.
     history = history.history
-    print('Validation accuracy: {acc}, loss: {loss}'.format(
-        acc=history['val_acc'][-1], loss=history['val_loss'][-1]))
+    print_history(history)
+    plot_history(history)
 
     # Save model.
     # model.save('mlp_model.h5')
     # return history['val_acc'][-1], history['val_loss'][-1]
+
+
+def print_history(history):
+    print('Validation accuracy: {acc}, loss: {loss}'.format(
+        acc=history['val_acc'][-1], loss=history['val_loss'][-1]))
+
+
+def plot_history(history):
+    fit, loss_ax = plt.subplots()
+    acc_ax = loss_ax.twinx()
+    loss_ax.plot(history['loss'], 'y', label='train loss')
+    loss_ax.plot(history['val_loss'], 'r', label='val loss')
+    acc_ax.plot(history['acc'], 'b', label='train acc')
+    acc_ax.plot(history['val_acc'], 'g', label='val acc')
+    loss_ax.set_xlabel('epoch')
+    loss_ax.set_ylabel('loss')
+    acc_ax.set_ylabel('accuracy')
+    loss_ax.legend(loc='upper left')
+    acc_ax.legend(loc='lower left')
+    plt.show()
 
 
 if __name__ == '__main__':
