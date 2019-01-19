@@ -14,7 +14,7 @@ Korean Thematic Analysis is a project to help understand all of the sequencial s
 
 ## Steps
 
-### 1. Collecting data
+### 1. Collecting Data
 We are gonna run into [Naver blog website](https://section.blog.naver.com/ThemePost.nhn?directoryNo=0&activeDirectorySeq=0&currentPage=1), classified by some categories. You don't need any authorization like login or something.
 We used [mongodb](https://www.mongodb.com/) to collect documents. You need to add configuration to connect your mongodb in `collect/cinfig/config.py` like below:
 ```
@@ -29,12 +29,20 @@ And all you have to do is just running crawler using this code below!
 python3 ./collect/blog-crawling.py
 ```
 
-### 2. Exploring data
-Before jumping into training and predicting something amazing, it is essential to explore the features of your data. Just run the code below and you can check `the number of samples`, `the number of classes`, `the number of samples per class`, and `medain number of words per sample`. Also you can see the plot of `length distribution` and `unigram distribution`.
+### 2. Exploring Data
+Before jumping into training and predicting something amazing, it is essential to explore the features of your data. Just run the code below and you can check `the number of samples`, `the number of classes`, `the number of samples per class`, and `medain number of words per sample`. Also you can see the plot of `length distribution` and `unigrams distribution`.
 ```
 python3 ./analyze/explore_data.py
 ```
 *Length Distribution*
 ![figure_1](https://user-images.githubusercontent.com/12438898/51427235-d6dc0300-1c38-11e9-9cb0-f36018d780a8.png)
-*Unigram Distribution*
+*Unigrams Distribution*
 ![figure_2](https://user-images.githubusercontent.com/12438898/51427236-d7749980-1c38-11e9-9fb5-70a8f0a125e7.png)
+
+### 3. Building a Model and Training
+We are gonna run some experiments to figure out which model fits our data the most.
+First we tokenized and vectorized using unigram and bigram, and built multi-layer perceptron model. Tune the hyperparameters using the plot of `learning curve` you can get at the end of training and the [guideline](https://github.com/godekdls/korean-thematic-analysis/issues/26) to avoid underfitting or overfitting. The plot for example below looks like overfitting.
+```
+python3 ./analyze/analyze_categories.py
+```
+![figure_3](https://user-images.githubusercontent.com/12438898/51427334-35ee4780-1c3a-11e9-8d56-11271b58d513.png)
