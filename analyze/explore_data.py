@@ -27,46 +27,33 @@ def load_dataset(seed=123):
     """
 
     # Load the whole data
-    total_data = {}
+    total_texts = []
+    total_labels = []
 
     for category in categories.CATEGORIES:
         collection_name = category['index-name']
         documents = mongo.find(collection_name, limit=NUM_OF_SAMPLES_PER_CLASS)
-        datas = []
         for document in documents:
-            data = {}
-            data['text'] = document['body']
-            data['label'] = category['class']
-            datas.append(data)
-        total_data[collection_name] = datas
+            total_texts.append(document['body'])
+            total_labels.append(category['class'])
     mongo.close()
 
+    # Shuffle the data
+    random.seed(seed)
+    random.shuffle(total_texts)
+    random.seed(seed)
+    random.shuffle(total_labels)
+
     # Divide the training data and validation data
-    train_texts = []
-    train_labels = []
-    test_texts = []
-    test_labels = []
-    for key, value in total_data.items():
-        documents = total_data[key]
+    total_len = len(total_labels)
+    train_len = int(total_len * 4 / 5) # 80%
+    train_texts = total_texts[:train_len]
+    train_labels = total_labels[:train_len]
+    test_texts = total_texts[train_len:]
+    test_labels = total_labels[train_len:]
 
-        # Shuffle the data
-        random.seed(seed)
-        random.shuffle(documents)
-
-        total_len = len(documents)
-        train_len = int(total_len * 4 / 5)
-        for i in range(total_len):
-            if i < train_len:
-                train_texts.append(documents[i]['text'])
-                train_labels.append(documents[i]['label'])
-            else:
-                test_texts.append(documents[i]['text'])
-                test_labels.append(documents[i]['label'])
-
-    # return ((train_texts, train_labels),
-    #         (test_texts, test_labels))
-    return ((train_texts, np.array(train_labels)),
-            (test_texts, np.array(test_labels)))
+    return ((np.array(train_texts), np.array(train_labels)),
+            (np.array(test_texts), np.array(test_labels)))
 
 
 def get_num_classes(train_labels):

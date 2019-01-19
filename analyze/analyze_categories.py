@@ -34,12 +34,11 @@ def train_ngram_model(data,
         ValueError: If validation data has label values which were not seen
             in the training data.
     """
-    # Get the data.
-    (train_texts, train_labels), (val_texts, val_labels) = data
+    (train_texts, train_labels), (test_texts, test_labels) = data
 
     # Verify that validation labels are in the same range as training labels.
     num_classes = explore_data.get_num_classes(train_labels)
-    unexpected_labels = [v for v in val_labels if v not in range(num_classes)]
+    unexpected_labels = [v for v in test_labels if v not in range(num_classes)]
     if len(unexpected_labels):
         raise ValueError('Unexpected label values found in the validation set:'
                          ' {unexpected_labels}. Please make sure that the '
@@ -47,8 +46,16 @@ def train_ngram_model(data,
                          'as training labels.'.format(
             unexpected_labels=unexpected_labels))
 
+    # divide Cross Validation Set
+    total_len = len(train_labels)
+    train_len = int(total_len * 3 / 4)
+    val_texts = train_texts[train_len:]
+    val_labels = train_labels[train_len:]
+    train_texts = train_texts[:train_len]
+    train_labels = train_labels[:train_len]
+
     # Vectorize texts.
-    x_train, x_val = ngram.vectorize(train_texts, train_labels, val_texts)
+    x_train, x_val, x_test = ngram.vectorize(train_texts, train_labels, val_texts, test_texts)
     # Create model instance.
     model = build_model.mlp_model(layers=layers,
                                   units=units,
@@ -61,7 +68,7 @@ def train_ngram_model(data,
 
     # Create callback for early stopping on validation loss. If the loss does
     # not decrease in two consecutive tries, stop training.
-    callbacks = [tf.keras.callbacks.EarlyStopping(monitor='val_loss', patience=2)]
+    callbacks = [tf.keras.callbacks.EarlyStopping(monitor='val_loss', patience=10)]
 
     # Train and validate model.
     history = model.fit(
@@ -76,6 +83,9 @@ def train_ngram_model(data,
     history = history.history
     print_history(history)
     plot_history(history)
+
+    loss_and_metrics = model.evaluate(x_test, test_labels, batch_size=batch_size)
+    print('loss and metrics : ', loss_and_metrics)
 
     # Save model.
     # model.save('mlp_model.h5')
