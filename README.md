@@ -36,7 +36,7 @@ python3 ./collect/blog-crawling.py
 ```
 
 ### 2. Exploring Data
-Before jumping into training and predicting something amazing, it is essential to explore the features of your data. Just run the code below and you can check `the number of samples`, `the number of classes`, `the number of samples per class`, and `medain number of words per sample`. Also you can see the plot of `length distribution` and `unigrams distribution`.
+Before we dive into training and predicting something amazing, it is essential to explore the features of your data. Just run the code below and you can check `the number of samples`, `the number of classes`, `the number of samples per class`, and `medain number of words per sample`. Also you can see the plot of `length distribution` and `unigrams distribution`.
 ```
 python3 ./analyze/explore_data.py
 ```
