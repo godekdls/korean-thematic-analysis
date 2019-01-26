@@ -14,7 +14,7 @@ from collect import mongo
 from config import categories
 
 # Number of samples per class
-NUM_OF_SAMPLES_PER_CLASS = 300  # TODO
+NUM_OF_SAMPLES_PER_CLASS = 1000  # TODO
 
 
 def load_dataset(seed=123):
