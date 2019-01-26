@@ -12,13 +12,13 @@ UNITS = 64
 DROPOUT_RATE = 0.2  # 0.2 ~ 0.5
 
 
-def train_ngram_model(data,
-                      learning_rate=LEARNING_RATE,
-                      epochs=EPOCHS,
-                      batch_size=BATCH_SIZE,
-                      layers=LAYERS,
-                      units=UNITS,
-                      dropout_rate=DROPOUT_RATE):
+def train_mlp_model(data,
+                    learning_rate=LEARNING_RATE,
+                    epochs=EPOCHS,
+                    batch_size=BATCH_SIZE,
+                    layers=LAYERS,
+                    units=UNITS,
+                    dropout_rate=DROPOUT_RATE):
     """Trains n-gram model on the given dataset.
 
     # Arguments
@@ -114,4 +114,4 @@ def plot_history(history):
 
 if __name__ == '__main__':
     dataset = explore_data.load_dataset()
-    train_ngram_model(dataset)
+    train_mlp_model(dataset)

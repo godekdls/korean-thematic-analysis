@@ -25,10 +25,11 @@ def vectorize(train_texts, train_labels, val_texts, test_texts):
     # Arguments
         train_texts: list, training text strings.
         train_labels: np.ndarray, training labels.
-        val_texts: list, validation text strings.
+        val_texts: list, cross validation text strings.
+        test_texts: list, testing text strings
 
     # Returns
-        x_train, x_val: vectorized training and validation texts
+        x_train, x_val, x_test : vectorized training, cross validation, and testing texts
     """
     # Create keyword arguments to pass to the 'tf-idf' vectorizer.
     kwargs = {
