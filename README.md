@@ -49,7 +49,7 @@ python3 ./analyze/explore_data.py
 We are gonna run some experiments to figure out which model fits our data the most.
 First we tokenized and vectorized using unigram and bigram, and built multi-layer perceptron model. Tune the hyperparameters using the plot of `learning curve` you can get at the end of training and the [guideline](https://github.com/godekdls/korean-thematic-analysis/issues/26) to avoid underfitting or overfitting. The plot for example below looks like overfitting.
 ```
-python3 ./analyze/analyze_categories.py
+python3 ./analyze/train_mlp.py
 ```
 #### learning curve
 ![figure_3](https://user-images.githubusercontent.com/12438898/51427334-35ee4780-1c3a-11e9-8d56-11271b58d513.png)
