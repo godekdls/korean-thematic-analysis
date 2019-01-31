@@ -6,6 +6,7 @@ from sklearn.feature_extraction.text import CountVectorizer
 
 import sys
 from os import path
+import nl_processing
 
 curdic = path.dirname(path.dirname(path.abspath(__file__)))
 sys.path.append(curdic)
@@ -34,7 +35,8 @@ def load_dataset(seed=123):
         collection_name = category['index-name']
         documents = mongo.find(collection_name, limit=NUM_OF_SAMPLES_PER_CLASS)
         for document in documents:
-            total_texts.append(document['body'])
+            body = document['body']
+            total_texts.append(nl_processing.extract_nouns(body))
             total_labels.append(category['class'])
     mongo.close()
 
