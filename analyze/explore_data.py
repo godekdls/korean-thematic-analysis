@@ -33,7 +33,9 @@ def load_dataset(seed=123):
 
     for category in categories.CATEGORIES:
         collection_name = category['index-name']
+        print('reading ' + collection_name)
         documents = mongo.find(collection_name, limit=NUM_OF_SAMPLES_PER_CLASS)
+        print(' natural language processing ' + collection_name)
         for document in documents:
             body = document['body']
             total_texts.append(nl_processing.extract_nouns(body))
@@ -41,14 +43,16 @@ def load_dataset(seed=123):
     mongo.close()
 
     # Shuffle the data
+    print('start shuffling')
     random.seed(seed)
     random.shuffle(total_texts)
     random.seed(seed)
     random.shuffle(total_labels)
 
     # Divide the training data and validation data
+    print('Divide the training data and validation data')
     total_len = len(total_labels)
-    train_len = int(total_len * 4 / 5) # 80%
+    train_len = int(total_len * 4 / 5)  # 80%
     train_texts = total_texts[:train_len]
     train_labels = total_labels[:train_len]
     test_texts = total_texts[train_len:]
