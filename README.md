@@ -38,7 +38,7 @@ python3 ./collect/blog-crawling.py
 ```
 
 #### 1-2. Download processed data
-Morphological analysis is required to anaylze Korean. [Kkma](http://kkma.snu.ac.kr/documents/index.jsp) is one of well-know morphological analyzer for korean. Run the code below and it will save natural language processed data info your file in the directory of `/data/blogs`.
+Morphological analysis is required to anaylze Korean. [Kkma](http://kkma.snu.ac.kr/documents/index.jsp) is one of well-know morphological analyzer for korean. Run the code below and it will save natural language processed data info your local files in the directory of `/data/blogs`.
 ```
 python3 batch.py
 ```
