@@ -6,15 +6,12 @@ from sklearn.feature_extraction.text import CountVectorizer
 
 import sys
 from os import path
+import glob
 
 curdic = path.dirname(path.dirname(path.abspath(__file__)))
 sys.path.append(curdic)
 sys.path.append(curdic + '/collect')
-from collect import mongo
 from config import categories
-
-# Number of samples per class
-NUM_OF_SAMPLES_PER_CLASS = 1000  # TODO
 
 
 def load_dataset(seed=123):
@@ -32,21 +29,26 @@ def load_dataset(seed=123):
 
     for category in categories.CATEGORIES:
         collection_name = category['index-name']
-        documents = mongo.find(collection_name, limit=NUM_OF_SAMPLES_PER_CLASS)
-        for document in documents:
-            total_texts.append(document['body'])
+        print('reading ' + collection_name)
+        path = './data/blogs/' + category['index-name']
+        file_names = glob.glob(path + "/*.txt")
+        for file_name in file_names:
+            file = open(file_name)
+            total_texts.append(file.read())
             total_labels.append(category['class'])
-    mongo.close()
+            file.close()
 
     # Shuffle the data
+    print('start shuffling')
     random.seed(seed)
     random.shuffle(total_texts)
     random.seed(seed)
     random.shuffle(total_labels)
 
     # Divide the training data and validation data
+    print('Divide the training data and validation data')
     total_len = len(total_labels)
-    train_len = int(total_len * 4 / 5) # 80%
+    train_len = int(total_len * 4 / 5)  # 80%
     train_texts = total_texts[:train_len]
     train_labels = total_labels[:train_len]
     test_texts = total_texts[train_len:]
