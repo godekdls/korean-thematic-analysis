@@ -25,7 +25,7 @@ OS_CONFIG = {
 }
 ```
 We used [mongodb](https://www.mongodb.com/) to collect documents. You need to add configuration to connect your mongodb in `collect/cinfig/config.py` like below:
-```
+```python
 MONGODB_CONFIG = {
     'host': 'your host',
     'dbname': 'your dbname',
