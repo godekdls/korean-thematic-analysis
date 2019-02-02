@@ -12,9 +12,11 @@ NUM_OF_SAMPLES_PER_CLASS = 10000  # TODO
 
 
 def save_into_local():
-    for category in categories.CATEGORIES:
+    num_of_categories = len(categories.CATEGORIES)
+    for i in range(num_of_categories):
+        category = categories.CATEGORIES[i]
         collection_name = category['index-name']
-        print('reading', collection_name)
+        print('\nreading', collection_name, '... (' + str(i + 1) + '/' + str(num_of_categories) + ')')
         documents = mongo.find(collection_name, limit=NUM_OF_SAMPLES_PER_CLASS)
         total = documents.count()
         suffix = 'downloading'
