@@ -4,6 +4,7 @@ Korean Thematic Analysis is a project to help understand all of the sequencial s
 ## Requirements
 - Python3
 - python on the PATH (make sure it's Python 3)
+- JDK 1.7+
 - [The Selenium Library](https://github.com/SeleniumHQ/selenium) (pip3 install selenium)
 - [The Pymongo Library](https://github.com/mongodb/mongo-python-driver) (pip3 install pymongo)
 - [The Numpy Library](https://github.com/numpy/numpy) (pip3 install numpy)
