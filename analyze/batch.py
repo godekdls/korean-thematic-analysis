@@ -23,7 +23,8 @@ def save_into_local():
         category = categories.CATEGORIES[i]
         collection_name = category['index-name']
         print('\nreading', collection_name, '... (' + str(i + 1) + '/' + str(num_of_categories) + ')')
-        documents = mongo.find(collection_name, limit=NUM_OF_SAMPLES_PER_CLASS)
+        documents = mongo.find(collection_name, query={'tokens' : {'$exists' : True, '$ne' : ''}},
+                               limit=NUM_OF_SAMPLES_PER_CLASS)
         total = documents.count()
         suffix = 'downloading'
         progress_bar.progress(0, total, suffix)
@@ -33,10 +34,9 @@ def save_into_local():
                 file_name = './data/blogs/' + category['index-name'] + '/' + document['docId'] + '.txt'
                 if not path.isfile(file_name):
                     text = document['tokens']
-                    if text:
-                        file = open(file_name, 'w')
-                        file.write(text)
-                        file.close()
+                    file = open(file_name, 'w')
+                    file.write(text)
+                    file.close()
             except Exception as e:
                 print('failed to process ', e)
                 pass
