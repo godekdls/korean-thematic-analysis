@@ -1,4 +1,5 @@
 import sys
+import os
 from os import path
 
 curdic = path.dirname(path.dirname(path.abspath(__file__)))
@@ -12,6 +13,11 @@ NUM_OF_SAMPLES_PER_CLASS = 10000  # TODO
 
 
 def save_into_local():
+    for category in categories.CATEGORIES:
+        directory = './data/blogs/' + category['index-name']
+        if not os.path.exists(directory):
+            os.makedirs(directory)
+
     num_of_categories = len(categories.CATEGORIES)
     for i in range(num_of_categories):
         category = categories.CATEGORIES[i]
@@ -26,10 +32,11 @@ def save_into_local():
             try:
                 file_name = './data/blogs/' + category['index-name'] + '/' + document['docId'] + '.txt'
                 if not path.isfile(file_name):
-                    file = open(file_name, 'w')
                     text = document['tokens']
-                    file.write(text)
-                    file.close()
+                    if text:
+                        file = open(file_name, 'w')
+                        file.write(text)
+                        file.close()
             except Exception as e:
                 print('failed to process ', e)
                 pass
