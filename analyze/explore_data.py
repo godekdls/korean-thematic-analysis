@@ -15,7 +15,7 @@ from config import categories
 from collect import progress_bar
 
 # Number of samples per class
-NUM_OF_SAMPLES_PER_CLASS = 1000  # TODO
+NUM_OF_SAMPLES_PER_CLASS = 10000  # TODO
 
 
 def load_dataset(seed=123):
