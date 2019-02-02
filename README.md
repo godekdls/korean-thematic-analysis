@@ -33,7 +33,7 @@ MONGODB_CONFIG = {
     'port': your port
 }
 ```
-Morphological analysis is required to anaylze Korean. [Kkma](http://kkma.snu.ac.kr/documents/index.jsp) is one of well-know morphological analyzer for korean. We will save natural language processed data while scraping and saving scraped raw data.
+Morphological analysis is required to anaylze Korean. [Twitter Korean Text](https://github.com/twitter/twitter-korean-text) is one of well-know morphological analyzer for korean. We will save natural language processed data while scraping and saving scraped raw data.
 And all you have to do is just running crawler using this code below!
 ```
 python3 ./collect/blog-crawling.py
