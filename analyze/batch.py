@@ -16,10 +16,10 @@ def save_into_local():
         collection_name = category['index-name']
         print('reading', collection_name)
         documents = mongo.find(collection_name, limit=NUM_OF_SAMPLES_PER_CLASS)
-        total = len(documents)
-        progress_bar.progress(0, total)
-        print(' natural language processing ' + collection_name)
-        for i in range(text):
+        total = documents.count()
+        suffix = 'downloading'
+        progress_bar.progress(0, total, suffix)
+        for i in range(total):
             document = documents[i]
             try:
                 file_name = './data/blogs/' + category['index-name'] + '/' + document['docId'] + '.txt'
@@ -31,7 +31,8 @@ def save_into_local():
             except Exception as e:
                 print('failed to process ', e)
                 pass
-            progress_bar.progress(i, total)
+            progress_bar.progress(i, total, suffix)
+        progress_bar.progress(total, total, suffix)
     mongo.close()
 
 
