@@ -12,10 +12,11 @@ curdic = path.dirname(path.dirname(path.abspath(__file__)))
 sys.path.append(curdic)
 sys.path.append(curdic + '/collect')
 from config import categories
+from collect import progress_bar
 
 
 # Number of samples per class
-NUM_OF_SAMPLES_PER_CLASS = 1000  # TODO
+NUM_OF_SAMPLES_PER_CLASS = 10000  # TODO
 
 def load_dataset(seed=123):
     """
@@ -32,9 +33,11 @@ def load_dataset(seed=123):
 
     for category in categories.CATEGORIES:
         collection_name = category['index-name']
-        print('reading ' + collection_name)
+        suffix = 'reading ' + collection_name
         path = './data/blogs/' + category['index-name']
         file_names = glob.glob(path + "/*.txt")
+
+        progress_bar.progress(0, NUM_OF_SAMPLES_PER_CLASS, suffix)
         for idx in range(len(file_names)):
             if idx + 1 > NUM_OF_SAMPLES_PER_CLASS:
                 break
@@ -43,6 +46,8 @@ def load_dataset(seed=123):
             total_texts.append(file.read())
             total_labels.append(category['class'])
             file.close()
+            progress_bar.progress(idx, NUM_OF_SAMPLES_PER_CLASS, suffix)
+        progress_bar.progress(NUM_OF_SAMPLES_PER_CLASS, NUM_OF_SAMPLES_PER_CLASS, suffix)
 
     # Shuffle the data
     print('start shuffling')
