@@ -30,9 +30,11 @@ def load_dataset(seed=123):
     total_texts = []
     total_labels = []
 
-    for category in categories.CATEGORIES:
+    num_of_categories = len(categories.CATEGORIES)
+    for i in range(num_of_categories):
+        category = categories.CATEGORIES[i]
         collection_name = category['index-name']
-        print('reading ' + collection_name)
+        print('\nreading', collection_name, '... (' + str(i + 1) + '/' + str(num_of_categories) + ')')
         path = './data/blogs/' + category['index-name']
         file_names = glob.glob(path + "/*.txt")
         for idx in range(len(file_names)):
