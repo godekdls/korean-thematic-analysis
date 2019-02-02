@@ -14,6 +14,9 @@ sys.path.append(curdic + '/collect')
 from config import categories
 
 
+# Number of samples per class
+NUM_OF_SAMPLES_PER_CLASS = 1000  # TODO
+
 def load_dataset(seed=123):
     """
     # Arguments
@@ -32,7 +35,10 @@ def load_dataset(seed=123):
         print('reading ' + collection_name)
         path = './data/blogs/' + category['index-name']
         file_names = glob.glob(path + "/*.txt")
-        for file_name in file_names:
+        for idx in range(len(file_names)):
+            if idx + 1 > NUM_OF_SAMPLES_PER_CLASS:
+                break
+            file_name = file_names[idx]
             file = open(file_name)
             total_texts.append(file.read())
             total_labels.append(category['class'])

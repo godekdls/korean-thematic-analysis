@@ -8,6 +8,7 @@ from selenium.webdriver.common.by import By
 from mongo import insert, close
 from config.categories import CATEGORIES
 from config.config import OS_CONFIG
+import nl_processing
 
 
 def crawl_category(category):
@@ -123,6 +124,7 @@ def save_document(category, endview_link):
     data = {}
     data['title'] = title
     data['body'] = body
+    data['tokens'] = nl_processing.extract_nouns(body)
     data['link'] = endview_link
     data['docId'] = doc_id
     data['userId'] = user_id
