@@ -16,6 +16,7 @@ Korean Thematic Analysis is a project to help understand all of the sequencial s
 ## Steps
 
 ### 1. Collecting Data
+#### 1-1. Crawling websites
 We are gonna run into [Naver blog website](https://section.blog.naver.com/ThemePost.nhn?directoryNo=0&activeDirectorySeq=0&currentPage=1), classified by some categories. You don't need any authorization like login or something.
 Let's access that page using chromedriver! Since the driver depends on OS, you need to give the information to initialize driver. In this repository, we have drivers only for mac or linux. If you have to run scraping on another system, copy your driver in the directory `./driver`. Add configuration like below:
 ```
@@ -36,6 +37,16 @@ And all you have to do is just running crawler using this code below!
 python3 ./collect/blog-crawling.py
 ```
 
+#### 1-2. Download processed data
+Morphological analysis is required to anaylze Korean. [Kkma](http://kkma.snu.ac.kr/documents/index.jsp) is one of well-know morphological analyzer for korean. Run the code below and it will save natural language processed data info your file in the directory of `/data/blogs`.
+```
+python3 batch.py
+```
+The default value of limit for each category is 1000. If you wanna change that fix the value at the top of the that file.
+```python
+NUM_OF_SAMPLES_PER_CLASS = 1000
+```
+
 ### 2. Exploring Data
 Before we dive into training and predicting something amazing, it is essential to explore the features of your data. Just run the code below and you can check `the number of samples`, `the number of classes`, `the number of samples per class`, and `medain number of words per sample`. Also you can see the plot of `length distribution` and `unigrams distribution`.
 ```
@@ -52,5 +63,16 @@ First we tokenized and vectorized using unigram and bigram, and built multi-laye
 ```
 python3 ./analyze/train_mlp.py
 ```
-#### learning curve
+#### 3-1. Learning Curve
 ![figure_3](https://user-images.githubusercontent.com/12438898/51427334-35ee4780-1c3a-11e9-8d56-11271b58d513.png)
+
+#### 3-2. Tune the Hyperparamters
+You can easily tune the hyperparameters by editing the constant values at the top of the file `/analyze/train_mlp.py`
+```python
+LEARNING_RATE = 1e-3
+EPOCHS = 1000
+BATCH_SIZE = 128
+LAYERS = 2
+UNITS = 64
+DROPOUT_RATE = 0.5
+```
