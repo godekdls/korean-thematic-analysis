@@ -26,4 +26,3 @@ def close():
 def find(collection_name, limit=1000):
     collection = db[collection_name]
     return collection.find().limit(limit)
-
