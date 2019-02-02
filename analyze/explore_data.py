@@ -6,16 +6,12 @@ from sklearn.feature_extraction.text import CountVectorizer
 
 import sys
 from os import path
-import nl_processing
+import glob
 
 curdic = path.dirname(path.dirname(path.abspath(__file__)))
 sys.path.append(curdic)
 sys.path.append(curdic + '/collect')
-from collect import mongo
 from config import categories
-
-# Number of samples per class
-NUM_OF_SAMPLES_PER_CLASS = 1000  # TODO
 
 
 def load_dataset(seed=123):
@@ -34,13 +30,13 @@ def load_dataset(seed=123):
     for category in categories.CATEGORIES:
         collection_name = category['index-name']
         print('reading ' + collection_name)
-        documents = mongo.find(collection_name, limit=NUM_OF_SAMPLES_PER_CLASS)
-        print(' natural language processing ' + collection_name)
-        for document in documents:
-            body = document['body']
-            total_texts.append(nl_processing.extract_nouns(body))
+        path = './data/blogs/' + category['index-name']
+        file_names = glob.glob(path + "/*.txt")
+        for file_name in file_names:
+            file = open(file_name)
+            total_texts.append(file.read())
             total_labels.append(category['class'])
-    mongo.close()
+            file.close()
 
     # Shuffle the data
     print('start shuffling')

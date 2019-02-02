@@ -9,7 +9,7 @@ EPOCHS = 1000
 BATCH_SIZE = 128
 LAYERS = 2
 UNITS = 64
-DROPOUT_RATE = 0.2  # 0.2 ~ 0.5
+DROPOUT_RATE = 0.5  # 0.2 ~ 0.5
 
 
 def train_mlp_model(data,
@@ -47,6 +47,7 @@ def train_mlp_model(data,
             unexpected_labels=unexpected_labels))
 
     # divide Cross Validation Set
+    print('Divide cross validation set')
     total_len = len(train_labels)
     train_len = int(total_len * 3 / 4)
     val_texts = train_texts[train_len:]
@@ -55,6 +56,7 @@ def train_mlp_model(data,
     train_labels = train_labels[:train_len]
 
     # Vectorize texts.
+    print('Vectorizing...')
     x_train, x_val, x_test = ngram.vectorize(train_texts, train_labels, val_texts, test_texts)
     # Create model instance.
     model = build_model.mlp_model(layers=layers,
