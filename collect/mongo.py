@@ -26,21 +26,3 @@ def close():
 def find(collection_name, limit=1000):
     collection = db[collection_name]
     return collection.find().limit(limit)
-
-
-def find_one(collection_name, query):
-    collection = db[collection_name]
-    return collection.find_one(query)
-
-def find_query(collection_name, query):
-    collection = db[collection_name]
-    return collection.find(query)
-
-
-def update_one(collection_name, query, data):
-    collection = db[collection_name]
-    try:
-        collection.update_one(query, data)
-    except Exception:
-        print('failed to update document into mongo')
-        print(traceback.format_exc())
