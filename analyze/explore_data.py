@@ -48,7 +48,7 @@ def load_dataset(seed=123):
             total_texts.append(file.read())
             total_labels.append(category['class'])
             file.close()
-            progress_bar.progress(i, total)
+            progress_bar.progress(idx, total)
         progress_bar.progress(total, total)
 
     # Shuffle the data
