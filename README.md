@@ -17,7 +17,7 @@ Korean Thematic Analysis is a project to help understand all of the sequencial s
 ## Steps
 
 ### 1. Collecting Data
-#### 1-1. Crawling websites
+#### 1-1. Crawling Websites and Processing
 We are gonna run into [Naver blog website](https://section.blog.naver.com/ThemePost.nhn?directoryNo=0&activeDirectorySeq=0&currentPage=1), classified by some categories. You don't need any authorization like login or something.
 Let's access that page using chromedriver! Since the driver depends on OS, you need to give the information to initialize driver. In this repository, we have drivers only for mac or linux. If you have to run scraping on another system, copy your driver in the directory `./driver`. Add configuration like below:
 ```
@@ -33,13 +33,15 @@ MONGODB_CONFIG = {
     'port': your port
 }
 ```
+Morphological analysis is required to anaylze Korean. [Kkma](http://kkma.snu.ac.kr/documents/index.jsp) is one of well-know morphological analyzer for korean. We will save natural language processed data while scraping and saving scraped raw data.
 And all you have to do is just running crawler using this code below!
 ```
 python3 ./collect/blog-crawling.py
 ```
 
+
 #### 1-2. Download processed data
-Morphological analysis is required to anaylze Korean. [Kkma](http://kkma.snu.ac.kr/documents/index.jsp) is one of well-know morphological analyzer for korean. Run the code below and it will save natural language processed data info your local files in the directory of `/data/blogs`.
+Run the code below and it will save natural language processed data into your local files in the directory of `/data/blogs`.
 ```
 python3 batch.py
 ```
