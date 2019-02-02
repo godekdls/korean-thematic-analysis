@@ -1,11 +1,11 @@
-from konlpy.tag import Kkma
+from konlpy.tag import Twitter
 from konlpy.utils import pprint
 
-kkma = Kkma()
+twitter = Twitter()
 
 
 def extract_nouns(text):
-    nouns = kkma.nouns(text)
+    nouns = twitter.nouns(text)
     return ' '.join(nouns)
 
 
