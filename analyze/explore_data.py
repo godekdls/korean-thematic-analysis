@@ -52,7 +52,7 @@ def load_dataset(seed=123):
         progress_bar.progress(total, total)
 
     # Shuffle the data
-    print('start shuffling')
+    print('\nstart shuffling')
     random.seed(seed)
     random.shuffle(total_texts)
     random.seed(seed)
