@@ -58,16 +58,16 @@ python3 ./analyze/explore_data.py
 #### Length Distribution
 ![figure_1](https://user-images.githubusercontent.com/12438898/51427235-d6dc0300-1c38-11e9-9cb0-f36018d780a8.png)
 #### Unigrams Distribution
-![figure_2](https://user-images.githubusercontent.com/12438898/51427236-d7749980-1c38-11e9-9fb5-70a8f0a125e7.png)
+![image](https://user-images.githubusercontent.com/12438898/52354181-51978180-2a73-11e9-8454-bd90d9ec30d8.png)
 
 ### 3. Building a Model and Training
 We are gonna run some experiments to figure out which model fits our data the most.
-First we tokenized and vectorized using unigram and bigram, and built multi-layer perceptron model. Tune the hyperparameters using the plot of `learning curve` you can get at the end of training and the [guideline](https://github.com/godekdls/korean-thematic-analysis/issues/26) to avoid underfitting or overfitting. The plot for example below looks like overfitting.
+First we tokenized and vectorized using unigram and bigram, and built multi-layer perceptron model. Tune the hyperparameters using the plot of `learning curve` you can get at the end of training and the [guideline](https://github.com/godekdls/korean-thematic-analysis/issues/26) to avoid underfitting or overfitting.
 ```
 python3 ./analyze/train_mlp.py
 ```
 #### 3-1. Learning Curve
-![figure_3](https://user-images.githubusercontent.com/12438898/51427334-35ee4780-1c3a-11e9-8d56-11271b58d513.png)
+![image](https://user-images.githubusercontent.com/12438898/52354211-5e1bda00-2a73-11e9-9ffd-be444d58b256.png)
 
 #### 3-2. Tune the Hyperparamters
 You can easily tune the hyperparameters by editing the constant values at the top of the file `/analyze/train_mlp.py`
