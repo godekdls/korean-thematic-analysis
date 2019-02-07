@@ -3,12 +3,14 @@ import build_model
 import ngram
 import tensorflow as tf
 import matplotlib.pyplot as plt
+from sklearn.model_selection import train_test_split, StratifiedKFold
+import numpy
 
 LEARNING_RATE = 1e-3
 EPOCHS = 1000
 BATCH_SIZE = 128
-LAYERS = 2
-UNITS = 64
+LAYERS = 4
+UNITS = 128
 DROPOUT_RATE = 0.5  # 0.2 ~ 0.5
 
 
@@ -46,48 +48,50 @@ def train_mlp_model(data,
                          'as training labels.'.format(
             unexpected_labels=unexpected_labels))
 
-    # divide Cross Validation Set
-    print('Divide cross validation set')
-    total_len = len(train_labels)
-    train_len = int(total_len * 3 / 4)
-    val_texts = train_texts[train_len:]
-    val_labels = train_labels[train_len:]
-    train_texts = train_texts[:train_len]
-    train_labels = train_labels[:train_len]
-
     # Vectorize texts.
     print('Vectorizing...')
-    x_train, x_val, x_test = ngram.vectorize(train_texts, train_labels, val_texts, test_texts)
-    # Create model instance.
-    model = build_model.mlp_model(layers=layers,
-                                  units=units,
-                                  dropout_rate=dropout_rate,
-                                  input_shape=x_train.shape[1:],  # shape : (row, column) / shape[1:] : (column)
-                                  num_classes=num_classes)
+    x_train, x_test = ngram.vectorize(train_texts, train_labels, test_texts)
 
-    optimizer = tf.keras.optimizers.Adam(lr=learning_rate)
-    model.compile(optimizer=optimizer, loss='sparse_categorical_crossentropy', metrics=['acc'])
+    histories = []
+    accuracies = []
+    folds = list(StratifiedKFold(n_splits=10, random_state=1, shuffle=True).split(x_train, train_labels))
+    for j, (train_idx, val_idx) in enumerate(folds):
+        print('\nFold ', j)
+        _x_train = x_train[train_idx]
+        _train_labels = train_labels[train_idx]
+        _x_val = x_train[val_idx]
+        _val_labels = train_labels[val_idx]
 
-    # Create callback for early stopping on validation loss. If the loss does
-    # not decrease in two consecutive tries, stop training.
-    callbacks = [tf.keras.callbacks.EarlyStopping(monitor='val_loss', patience=10)]
+        # Create model instance.
+        model = build_model.mlp_model(layers=layers,
+                                      units=units,
+                                      dropout_rate=dropout_rate,
+                                      input_shape=x_train.shape[1:],  # shape : (row, column) / shape[1:] : (column)
+                                      num_classes=num_classes)
+        optimizer = tf.keras.optimizers.Adam(lr=learning_rate)
+        model.compile(optimizer=optimizer, loss='sparse_categorical_crossentropy', metrics=['acc'])
 
-    # Train and validate model.
-    history = model.fit(
-        x_train,
-        train_labels,
-        epochs=epochs,
-        callbacks=callbacks,
-        validation_data=(x_val, val_labels),
-        verbose=2,  # Logs once per epoch.
-        batch_size=batch_size)
+        # Create callback for early stopping on validation loss. If the loss does
+        # not decrease in two consecutive tries, stop training.
+        callbacks = [tf.keras.callbacks.EarlyStopping(monitor='val_loss', patience=10)]
 
-    history = history.history
-    print_history(history)
+        # Train and validate model.
+        history = model.fit(
+            _x_train,
+            _train_labels,
+            epochs=epochs,
+            callbacks=callbacks,
+            validation_data=(_x_val, _val_labels),
+            verbose=2,  # Logs once per epoch.
+            batch_size=batch_size)
 
-    accuracy = model.evaluate(x_test, test_labels, batch_size=batch_size)
-    print("\n%s : %.2f%%" % (model.metrics_names[1], accuracy[1] * 100))
-    plot_history(history)
+        histories.append(history.history)
+        scores = model.evaluate(x_test, test_labels, batch_size=batch_size)
+        print("%s: %.2f%%" % (model.metrics_names[1], scores[1] * 100))
+        accuracies.append(scores[1] * 100)
+    print("%.2f%% (+/- %.2f%%)" % (numpy.mean(accuracies), numpy.std(accuracies)))
+    for history in histories:
+        plot_history(history)
 
     # Save model.
     # model.save('mlp_model.h5')

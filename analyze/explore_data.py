@@ -15,7 +15,7 @@ from config import categories
 from collect import progress_bar
 
 # Number of samples per class
-NUM_OF_SAMPLES_PER_CLASS = 10000  # TODO
+NUM_OF_SAMPLES_PER_CLASS = 50  # TODO
 
 
 def load_dataset(seed=123):
@@ -30,7 +30,6 @@ def load_dataset(seed=123):
     # Load the whole data
     total_texts = []
     total_labels = []
-
     num_of_categories = len(categories.CATEGORIES)
     for i in range(num_of_categories):
         category = categories.CATEGORIES[i]
@@ -52,14 +51,13 @@ def load_dataset(seed=123):
         progress_bar.progress(total, total)
 
     # Shuffle the data
-    print('\nstart shuffling')
+    print('\nShuffling')
     random.seed(seed)
     random.shuffle(total_texts)
     random.seed(seed)
     random.shuffle(total_labels)
 
-    # Divide the training data and validation data
-    print('Divide the training data and validation data')
+    print('Divide the training data and test data')
     total_len = len(total_labels)
     train_len = int(total_len * 4 / 5)  # 80%
     train_texts = total_texts[:train_len]
