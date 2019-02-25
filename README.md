@@ -43,7 +43,7 @@ python3 ./collect/blog-crawling.py
 #### 1-2. Download processed data
 Run the code below and it will save natural language processed data into your local files in the directory of `/data/blogs`.
 ```
-python3 batch.py
+python3 ./analyze/batch.py
 ```
 The default value of limit for each category is 1000. If you wanna change that fix the value at the top of the that file.
 ```python
